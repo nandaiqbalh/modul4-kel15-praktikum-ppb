@@ -11,6 +11,14 @@ function HomeScreen() {
                         : styles.evenItemListContainer
                 }
             >
+
+                <View style={
+                    dataPassing.dataNama.id % 2 === 1
+                        ? styles.oddItemListLine
+                        : styles.evenItemListLine
+                }
+                />
+
                 <View>
                     <View style={styles.itemListLine} />
                 </View>
@@ -38,7 +46,7 @@ function HomeScreen() {
                     }}
                     style={styles.headerImage}
                 />
-                <Text style={styles.headerText}>PRAKTIKUM MDP MODUL 4 KELOMPOK XX</Text>
+                <Text style={styles.headerText}>PRAKTIKUM MDP MODUL 4 KELOMPOK 15</Text>
             </View>
             <FlatList
                 showsVerticalScrollIndicator={false}
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     headerContainer: {
-        backgroundColor: "#1363DF",
+        backgroundColor: "#1E90FF",
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 15,
         alignItems: "center",
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
     },
     oddItemListContainer: {
         height: 100,
-        backgroundColor: "#47B5FF",
+        backgroundColor: "#BDB76B",
         marginVertical: 5,
         borderRadius: 10,
         flexDirection: "row",
@@ -86,7 +94,7 @@ const styles = StyleSheet.create({
     },
     evenItemListContainer: {
         height: 100,
-        backgroundColor: "#DFF6FF",
+        backgroundColor: "#00CED1",
         marginVertical: 5,
         borderRadius: 10,
         flexDirection: "row",
@@ -106,7 +114,18 @@ const styles = StyleSheet.create({
         marginVertical: 2,
         fontWeight: "bold",
         fontSize: 17
-    }
+    },
+
+    oddItemListLine: {
+        backgroundColor: "skyblue",
+        width: 5,
+        height: "80%"
+    },
+    evenItemListLine: {
+        backgroundColor: "yellow",
+        width: 5,
+        height: "80%"
+    },
 });
 
 export default HomeScreen;
