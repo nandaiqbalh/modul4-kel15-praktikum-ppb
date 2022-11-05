@@ -8,17 +8,18 @@ import {
     TouchableOpacity
 } from "react-native";
 import axios from "axios";
+import { data as kelompok15 } from "../common/Data";
 
 function ProfileScreen() {
     const [data, setData] = useState("");
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         async function fetchData() {
             const request = await axios
-                .get("https://reqres.in/api/users/" + count.toString())
-                .then((res) => setData(res.data.data))
-                .catch((e) => Alert.alert("Gagal!", e));
+                .get("https://api.github.com/users/" + kelompok15[count].githubUsername)
+                .then((res) => setData(res.data))
+                .catch((e) => Alert.alert("Failed!", e));
             return request;
         }
 
@@ -35,14 +36,21 @@ function ProfileScreen() {
             <View style={styles.headerContainer}>
                 <Image
                     source={{
-                        uri: data.avatar
+                        uri: data.avatar_url
                     }}
                     style={styles.headerImage}
                 />
                 <Text style={styles.headerText}>
-                    {data.first_name + " " + data.last_name}
+                    {data.name} ({data.login})
                 </Text>
-                <Text style={styles.headerTextDesc}>{data.email}</Text>
+                <Text style={styles.headerTextDesc}>Email : {data.email}</Text>
+                <Text style={styles.headerTextDesc}>Bio : {data.bio}</Text>
+                <Text style={styles.headerTextDesc}>Company : {data.company}</Text>
+                <Text style={styles.headerTextDesc}>Lokasi : {data.location}</Text>
+                <Text style={styles.headerTextDesc}>Twitter : {data.twitter_username}</Text>
+                <Text style={styles.headerTextDesc}>Followers : {data.followers}</Text>
+                <Text style={styles.headerTextDesc}>Following : {data.following}</Text>
+
             </View>
             <TouchableOpacity style={styles.bodyTouchable} onPress={() => next()}>
                 <Text style={styles.bodyText}>NEXT</Text>
@@ -56,28 +64,28 @@ const styles = StyleSheet.create({
         flex: 1
     },
     headerContainer: {
-        backgroundColor: "#1363DF",
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 15,
+        backgroundColor: "skyblue",
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
         alignItems: "center",
         paddingBottom: 10
     },
     headerImage: {
-        height: 120,
-        width: 120,
+        height: 150,
+        width: 150,
         borderRadius: 60,
         marginVertical: 10
     },
     headerText: {
         fontWeight: "bold",
-        color: "#fff"
+        color: "black"
     },
     headerTextDesc: {
-        color: "#fff"
+        color: "black"
     },
     bodyTouchable: {
         alignSelf: "center",
-        backgroundColor: "#47B5FF",
+        backgroundColor: "blue",
         paddingHorizontal: 20,
         paddingVertical: 5,
         borderRadius: 10,
@@ -85,6 +93,7 @@ const styles = StyleSheet.create({
     },
     bodyText: {
         color: "#efd",
+        fontWeight: "bold",
         fontSize: 20
     }
 });
